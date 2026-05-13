@@ -1,0 +1,31 @@
+run_name: baseline
+
+data:
+  lob_path: MD/lob.csv
+  trades_path: MD/trades.csv
+  # Default window: first 24h of the dataset (1722470400…1722556800 UTC).
+  start_ts: 1722470400000000
+  end_ts:   1722556800000000
+
+sim:
+  latency_us: 1000        # 1 ms
+  tick_size: 0.0000001
+
+fees:
+  maker: 0.0              # set positive for fee, negative for rebate
+  taker: 0.0
+
+strategy:
+  kind: avellaneda_stoikov
+  # gamma calibrated for q_norm=1, tau=300s, sigma2~8e-11:
+  # desired skew = 1 tick = 1e-7 => gamma = 1e-7 / (1 * 8e-11 * 300) ≈ 4.2
+  gamma: 4.0
+  k: 15000000             # 1.5 / tick_size
+  sigma_window_sec: 60
+  quote_size: 1000
+  q_max: 10000
+  risk_horizon_sec: 300   # cap tau at 5 min — prevents inventory skew blow-up
+  max_inv_skew_ticks: 5   # hard clamp on reservation-price shift (safety net)
+
+output:
+  report_dir: reports

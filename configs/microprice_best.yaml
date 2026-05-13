@@ -1,0 +1,24 @@
+run_name: microprice
+data:
+  lob_path: MD/lob.csv
+  trades_path: MD/trades.csv
+  start_ts: 1722470400000000
+  end_ts: 1722556800000000
+sim:
+  latency_us: 1000
+  tick_size: 1.0e-07
+fees:
+  maker: 0.0
+  taker: 0.0
+strategy:
+  kind: avellaneda_microprice
+  quote_size: 1000
+  q_max: 10000
+  gamma: 11.377786
+  k: 101742.353806
+  sigma_window_sec: 262
+  risk_horizon_sec: 203
+  max_inv_skew_ticks: 8
+  beta: 1.7790683292986727e-07
+output:
+  report_dir: reports

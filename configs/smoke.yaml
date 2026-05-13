@@ -1,0 +1,27 @@
+run_name: smoke
+
+data:
+  lob_path: MD/lob.csv
+  trades_path: MD/trades.csv
+  # 5 minutes from the start: [00:00:00, 00:05:00) UTC on 2024-08-01.
+  start_ts: 1722470400000000
+  end_ts:   1722471700000000
+
+sim:
+  latency_us: 1000
+  tick_size: 0.0000001
+
+fees:
+  maker: 0.0
+  taker: 0.0
+
+strategy:
+  kind: avellaneda_stoikov
+  gamma: 0.1
+  k: 15000000
+  sigma_window_sec: 60
+  quote_size: 1000
+  q_max: 10000
+
+output:
+  report_dir: reports

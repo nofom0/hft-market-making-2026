@@ -1,0 +1,29 @@
+run_name: microprice
+
+data:
+  lob_path: MD/lob.csv
+  trades_path: MD/trades.csv
+  start_ts: 1722470400000000
+  end_ts:   1722556800000000
+
+sim:
+  latency_us: 1000
+  tick_size: 0.0000001
+
+fees:
+  maker: 0.0
+  taker: 0.0
+
+strategy:
+  kind: avellaneda_microprice
+  gamma: 4.0
+  k: 15000000
+  sigma_window_sec: 60
+  quote_size: 1000
+  q_max: 10000
+  risk_horizon_sec: 300
+  max_inv_skew_ticks: 5
+  beta: 0.0000005         # 5 * tick_size — imbalance-skew strength
+
+output:
+  report_dir: reports
