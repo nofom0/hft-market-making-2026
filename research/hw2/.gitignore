@@ -1,0 +1,8 @@
+# data is NOT committed (multi-GB parquet)
+data/
+*.parquet
+# python / tooling cruft
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.txt
